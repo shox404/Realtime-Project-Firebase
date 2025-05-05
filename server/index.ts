@@ -4,13 +4,31 @@ import http from "http";
 import cors from "cors";
 import { Server } from "socket.io";
 
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://realtime-project-firebase-web.vercel.app",
+];
+
 const app = express();
+
 app.use(cors());
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+  })
+);
+
 const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: allowedOrigins,
   },
 });
 
