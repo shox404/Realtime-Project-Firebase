@@ -1,4 +1,3 @@
-import { VercelRequest, VercelResponse } from "@vercel/node";
 import express from "express";
 import http from "http";
 import cors from "cors";
@@ -49,6 +48,4 @@ server.listen(4000, () => {
   console.log("Socket.IO server running on http://localhost:4000");
 });
 
-export default (req: VercelRequest, res: VercelResponse) => {
-  server.emit("request", req, res);
-};
+export default app;
