@@ -1,13 +1,13 @@
 import { io } from "socket.io-client";
 
-// const isBrowser = typeof window !== "undefined";
-// const isLocalhost = isBrowser && window.location.hostname === "localhost";
+const isBrowser = typeof window !== "undefined";
+const isLocalhost = isBrowser && window.location.hostname === "localhost";
 
-// export const SOCKET_URL = isLocalhost
-//   ? `http://localhost:4000`
-//   : "https://realtime-project-firebase-api.vercel.app";
+export const SOCKET_URL = isLocalhost
+  ? `http://localhost:4000`
+  : "https://realtime-project-firebase-api.vercel.app";
 
-const socket = io("http://localhost:4000", {
+const socket = io(SOCKET_URL, {
   transports: ["websocket"],
   reconnectionAttempts: 5,
   timeout: 10000,

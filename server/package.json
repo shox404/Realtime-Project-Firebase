@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node index.ts",
+    "dev": "nodemon index.ts",
     "build": "tsc",
-    "dev": "nodemon --exec ts-node index.ts"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
