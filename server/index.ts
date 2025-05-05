@@ -10,7 +10,6 @@ const allowedOrigins = [
 
 const app = express();
 
-app.use(cors());
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -28,6 +27,7 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: allowedOrigins,
+    methods: ["GET", "POST"],
   },
 });
 
@@ -35,7 +35,8 @@ io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
 
   socket.on("send-message", (message) => {
-    console.log("Message:", message);
+    console.log("Message received:", message);
+
     io.emit("receive-message", message);
   });
 

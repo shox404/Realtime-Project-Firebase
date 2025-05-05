@@ -7,6 +7,8 @@ export const SOCKET_URL = isLocalhost
   ? `http://localhost:4000`
   : "https://realtime-project-firebase-api.vercel.app";
 
-const socket = io(SOCKET_URL);
+const socket = io(SOCKET_URL, {
+  transports: ["websocket"],
+});
 
 export default socket;
